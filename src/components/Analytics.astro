@@ -4,9 +4,9 @@
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGXEMLB75R"></script>
-<script>
-  (window as any).dataLayer = (window as any).dataLayer || [];
-  function gtag(...args: any[]) {(window as any).dataLayer.push(args);}
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-TGXEMLB75R');
