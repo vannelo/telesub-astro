@@ -1,6 +1,7 @@
 ---
 import { getLangFromUrl, useTranslations } from '../i18n/utils.js';
 import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import Analytics from '../components/Analytics.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -9,7 +10,7 @@ const t = useTranslations(lang);
 <html lang={lang}>
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Telesub - {t('hero.title.main')} {t('hero.title.gradient')}</title>
@@ -99,11 +100,10 @@ const t = useTranslations(lang);
 				font-weight: bold;
 				color: #019aff;
 				text-decoration: none;
-				margin-bottom: 1rem;
 			}
 
 			.logo-icon {
-				width: 140px;
+				width: 100px;
 				margin-right: 0.5rem;
 				object-fit: contain;
 			}
@@ -119,6 +119,7 @@ const t = useTranslations(lang);
 				font-weight: 500;
 				text-decoration: none;
 				transition: color 0.3s ease;
+				font-size: 0.875rem;
 			}
 
 			.btn-signin:hover {
@@ -128,11 +129,12 @@ const t = useTranslations(lang);
 			.btn-primary {
 				background: #019aff;
 				color: white;
-				padding: 0.5rem 1.5rem;
+				padding: 0.4rem 1.2rem;
 				border-radius: 9999px;
 				font-weight: 500;
 				text-decoration: none;
 				transition: all 0.3s ease;
+				font-size: 0.875rem;
 			}
 
 			.btn-primary:hover {
@@ -397,8 +399,26 @@ const t = useTranslations(lang);
 				color: #94a3b8;
 			}
 
+			/* Language Switcher Mobile/Desktop Control */
+			.mobile-lang-switcher {
+				display: none;
+				justify-content: center;
+				margin-bottom: 1rem;
+			}
+
+			.desktop-lang-switcher {
+				display: flex;
+			}
+
 			/* Responsive */
 			@media (max-width: 768px) {
+				.desktop-lang-switcher {
+					display: none;
+				}
+
+				.mobile-lang-switcher {
+					display: flex;
+				}
 				.nav-buttons {
 					gap: 0.5rem;
 				}
@@ -433,6 +453,13 @@ const t = useTranslations(lang);
 				.footer-links span {
 					display: none;
 				}
+				.footer-logo-section {
+					text-align: center;
+				}
+				.footer-logo-section img {
+					margin: 0 auto;
+					margin-bottom: 1rem;
+				}
 			}
 		</style>
 	</head>
@@ -447,7 +474,9 @@ const t = useTranslations(lang);
 							<img src="/blue-logo.png" alt="Telesub logo" class="logo-icon" />
 						</a>
 						<div class="nav-buttons">
-							<LanguageSwitcher />
+							<div class="desktop-lang-switcher">
+								<LanguageSwitcher />
+							</div>
 							<a href="/signin" class="btn-signin">{t('nav.signin')}</a>
 							<a href="/signup" class="btn-primary">{t('nav.signup')}</a>
 						</div>
@@ -552,11 +581,11 @@ const t = useTranslations(lang);
 			<footer>
 				<div class="container">
 					<div class="footer-grid">
-						<div class="footer-section">
+						<div class="footer-section footer-logo-section">
 							<a href="/" class="logo">
 								<img src="/blue-logo.png" alt="Telesub logo" class="logo-icon" />
 							</a>
-							<p>{t('footer.description')}</p>
+							<p class="footer-logo-description">{t('footer.description')}</p>
 						</div>
 						<div class="footer-section"></div>
 						<div class="footer-section"></div>
@@ -567,6 +596,9 @@ const t = useTranslations(lang);
 						</div>
 					</div>
 					<div class="footer-bottom">
+						<div class="mobile-lang-switcher">
+							<LanguageSwitcher />
+						</div>
 						<div class="footer-links">
 							<a href="/privacy">{t('footer.links.privacy')}</a>
 							<span>•</span>
@@ -583,7 +615,8 @@ const t = useTranslations(lang);
 			document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 				anchor.addEventListener('click', function (e) {
 					e.preventDefault();
-					const target = document.querySelector(this.getAttribute('href'));
+					const href = anchor.getAttribute('href');
+					const target = href ? document.querySelector(href) : null;
 					if (target) {
 						target.scrollIntoView({
 							behavior: 'smooth',
@@ -593,5 +626,7 @@ const t = useTranslations(lang);
 				});
 			});
 		</script>
+		
+		<Analytics />
 	</body>
 </html>

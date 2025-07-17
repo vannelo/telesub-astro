@@ -1,6 +1,7 @@
 ---
 import { getLangFromUrl, useTranslations } from '../i18n/utils.js';
 import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import Analytics from '../components/Analytics.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -9,7 +10,7 @@ const t = useTranslations(lang);
 <html lang={lang}>
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{t('privacy.title')} - Telesub</title>
@@ -102,7 +103,7 @@ const t = useTranslations(lang);
 			}
 
 			.logo-icon {
-				width: 140px;
+				width: 100px;
 				margin-right: 0.5rem;
 				object-fit: contain;
 			}
@@ -118,6 +119,7 @@ const t = useTranslations(lang);
 				font-weight: 500;
 				text-decoration: none;
 				transition: color 0.3s ease;
+				font-size: 0.875rem;
 			}
 
 			.btn-signin:hover {
@@ -127,11 +129,12 @@ const t = useTranslations(lang);
 			.btn-primary {
 				background: #019aff;
 				color: white;
-				padding: 0.5rem 1.5rem;
+				padding: 0.4rem 1.2rem;
 				border-radius: 9999px;
 				font-weight: 500;
 				text-decoration: none;
 				transition: all 0.3s ease;
+				font-size: 0.875rem;
 			}
 
 			.btn-primary:hover {
@@ -239,8 +242,27 @@ const t = useTranslations(lang);
 				text-decoration: underline;
 			}
 
+			/* Language Switcher Mobile/Desktop Control */
+			.mobile-lang-switcher {
+				display: none;
+				justify-content: center;
+				margin-bottom: 1rem;
+			}
+
+			.desktop-lang-switcher {
+				display: flex;
+			}
+
 			/* Responsive */
 			@media (max-width: 768px) {
+				.desktop-lang-switcher {
+					display: none;
+				}
+
+				.mobile-lang-switcher {
+					display: flex;
+				}
+
 				.page-title h1 {
 					font-size: 2rem;
 				}
@@ -271,7 +293,9 @@ const t = useTranslations(lang);
 							<img src="/blue-logo.png" alt="Telesub logo" class="logo-icon" />
 						</a>
 						<div class="nav-buttons">
-							<LanguageSwitcher />
+							<div class="desktop-lang-switcher">
+								<LanguageSwitcher />
+							</div>
 							<a href="/signin" class="btn-signin">{t('nav.signin')}</a>
 							<a href="/signup" class="btn-primary">{t('nav.signup')}</a>
 						</div>
@@ -369,6 +393,25 @@ const t = useTranslations(lang);
 					</div>
 				</div>
 			</main>
+
+			<!-- Footer -->
+			<footer style="border-top: 1px solid rgba(226, 232, 240, 0.5); padding: 2rem 0; margin-top: 3rem;">
+				<div class="container">
+					<div style="border-top: 1px solid rgba(226, 232, 240, 0.5); padding-top: 2rem; text-align: center; color: #64748b; font-size: 0.875rem;">
+						<div class="mobile-lang-switcher">
+							<LanguageSwitcher />
+						</div>
+						<div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1rem;">
+							<a href="/privacy" style="color: #64748b; text-decoration: none; font-size: 0.875rem; transition: color 0.3s ease;">{t('footer.links.privacy')}</a>
+							<span style="color: #94a3b8;">•</span>
+							<a href="/terms" style="color: #64748b; text-decoration: none; font-size: 0.875rem; transition: color 0.3s ease;">{t('footer.links.terms')}</a>
+						</div>
+						<p>{t('footer.copyright')}</p>
+					</div>
+				</div>
+			</footer>
 		</div>
+		
+		<Analytics />
 	</body>
 </html> 
