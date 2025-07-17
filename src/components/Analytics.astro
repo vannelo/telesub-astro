@@ -2,6 +2,16 @@
 // Import Vercel Analytics for client-side tracking
 ---
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TGXEMLB75R"></script>
+<script>
+  (window as any).dataLayer = (window as any).dataLayer || [];
+  function gtag(...args: any[]) {(window as any).dataLayer.push(args);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TGXEMLB75R');
+</script>
+
 <script>
   import { inject } from '@vercel/analytics';
   
