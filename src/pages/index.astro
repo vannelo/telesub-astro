@@ -477,8 +477,8 @@ const t = useTranslations(lang);
 							<div class="desktop-lang-switcher">
 								<LanguageSwitcher />
 							</div>
-							<a href="/signin" class="btn-signin">{t('nav.signin')}</a>
-							<a href="/signup" class="btn-primary">{t('nav.signup')}</a>
+							<a href={`https://admin.telesub.app/${lang}/signin`} class="btn-signin">{t('nav.signin')}</a>
+							<a href={`https://admin.telesub.app/${lang}/signup`} class="btn-primary">{t('nav.signup')}</a>
 						</div>
 					</nav>
 				</div>
@@ -493,7 +493,7 @@ const t = useTranslations(lang);
 						<span class="title-gradient">{t('hero.title.gradient')}</span>
 					</h1>
 					<p>{t('hero.description')}</p>
-					<a href="/signup" class="btn-hero">{t('hero.cta')}</a>
+					<a href={`https://admin.telesub.app/${lang}/signup`} class="btn-hero">{t('hero.cta')}</a>
 				</div>
 			</section>
 
@@ -573,7 +573,7 @@ const t = useTranslations(lang);
 				<div class="container">
 					<h2>{t('cta.title')}</h2>
 					<p>{t('cta.description')}</p>
-					<a href="/signup" class="btn-hero">{t('cta.button')}</a>
+					<a href={`https://admin.telesub.app/${lang}/signup`} class="btn-hero">{t('cta.button')}</a>
 				</div>
 			</section>
 

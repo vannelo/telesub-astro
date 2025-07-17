@@ -296,8 +296,8 @@ const t = useTranslations(lang);
 							<div class="desktop-lang-switcher">
 								<LanguageSwitcher />
 							</div>
-							<a href="/signin" class="btn-signin">{t('nav.signin')}</a>
-							<a href="/signup" class="btn-primary">{t('nav.signup')}</a>
+							<a href={`https://admin.telesub.app/${lang}/signin`} class="btn-signin">{t('nav.signin')}</a>
+							<a href={`https://admin.telesub.app/${lang}/signup`} class="btn-primary">{t('nav.signup')}</a>
 						</div>
 					</nav>
 				</div>
