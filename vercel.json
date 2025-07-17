@@ -1,5 +1,5 @@
 {
-  "regions": ["all"],
+  "regions": ["iad1", "gru1", "fra1"],
   "functions": {
     "src/middleware.js": {
       "runtime": "edge"
