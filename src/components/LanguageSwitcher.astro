@@ -1,0 +1,75 @@
+---
+import { getLangFromUrl, getAlternateLanguageUrl } from '../i18n/utils.js';
+import { languages } from '../i18n/ui.js';
+
+const lang = getLangFromUrl(Astro.url);
+const otherLang = lang === 'es' ? 'en' : 'es';
+const otherLangUrl = getAlternateLanguageUrl(Astro.url, otherLang);
+---
+
+<div class="language-switcher">
+	<a href={otherLangUrl} class="lang-link" data-lang={otherLang}>
+		<span class="lang-code">{otherLang.toUpperCase()}</span>
+		<span class="lang-name">{languages[otherLang]}</span>
+	</a>
+</div>
+
+<style>
+	.language-switcher {
+		display: flex;
+		align-items: center;
+	}
+
+	.lang-link {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		color: #475569;
+		text-decoration: none;
+		padding: 0.5rem 1rem;
+		border-radius: 0.5rem;
+		transition: all 0.3s ease;
+		font-size: 0.875rem;
+		font-weight: 500;
+	}
+
+	.lang-link:hover {
+		color: #019aff;
+		background-color: rgba(1, 154, 255, 0.1);
+	}
+
+	.lang-code {
+		font-weight: 600;
+		font-size: 0.75rem;
+		padding: 0.25rem 0.5rem;
+		background: rgba(1, 154, 255, 0.1);
+		border-radius: 0.25rem;
+		color: #019aff;
+	}
+
+	.lang-name {
+		display: none;
+	}
+
+	@media (min-width: 640px) {
+		.lang-name {
+			display: inline;
+		}
+	}
+</style>
+
+<script>
+	// Save language preference when user manually switches
+	document.addEventListener('DOMContentLoaded', function() {
+		const langLinks = document.querySelectorAll('.lang-link');
+		
+		langLinks.forEach(link => {
+			link.addEventListener('click', function(e) {
+				const targetLang = this.getAttribute('data-lang');
+				
+				// Save preference in cookie
+				document.cookie = `preferred-language=${targetLang}; path=/; max-age=${30 * 24 * 60 * 60}`; // 30 days
+			});
+		});
+	});
+</script> 

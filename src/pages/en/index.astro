@@ -1,6 +1,6 @@
 ---
-import { getLangFromUrl, useTranslations } from '../i18n/utils.js';
-import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils.js';
+import LanguageSwitcher from '../../components/LanguageSwitcher.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -443,13 +443,13 @@ const t = useTranslations(lang);
 			<header>
 				<div class="container">
 					<nav>
-						<a href="/" class="logo">
+						<a href="/en" class="logo">
 							<img src="/blue-logo.png" alt="Telesub logo" class="logo-icon" />
 						</a>
 						<div class="nav-buttons">
 							<LanguageSwitcher />
-							<a href="/signin" class="btn-signin">{t('nav.signin')}</a>
-							<a href="/signup" class="btn-primary">{t('nav.signup')}</a>
+							<a href="/en/signin" class="btn-signin">{t('nav.signin')}</a>
+							<a href="/en/signup" class="btn-primary">{t('nav.signup')}</a>
 						</div>
 					</nav>
 				</div>
@@ -464,7 +464,7 @@ const t = useTranslations(lang);
 						<span class="title-gradient">{t('hero.title.gradient')}</span>
 					</h1>
 					<p>{t('hero.description')}</p>
-					<a href="/signup" class="btn-hero">{t('hero.cta')}</a>
+					<a href="/en/signup" class="btn-hero">{t('hero.cta')}</a>
 				</div>
 			</section>
 
@@ -544,7 +544,7 @@ const t = useTranslations(lang);
 				<div class="container">
 					<h2>{t('cta.title')}</h2>
 					<p>{t('cta.description')}</p>
-					<a href="/signup" class="btn-hero">{t('cta.button')}</a>
+					<a href="/en/signup" class="btn-hero">{t('cta.button')}</a>
 				</div>
 			</section>
 
@@ -553,7 +553,7 @@ const t = useTranslations(lang);
 				<div class="container">
 					<div class="footer-grid">
 						<div class="footer-section">
-							<a href="/" class="logo">
+							<a href="/en" class="logo">
 								<img src="/blue-logo.png" alt="Telesub logo" class="logo-icon" />
 							</a>
 							<p>{t('footer.description')}</p>
@@ -568,9 +568,9 @@ const t = useTranslations(lang);
 					</div>
 					<div class="footer-bottom">
 						<div class="footer-links">
-							<a href="/privacy">{t('footer.links.privacy')}</a>
+							<a href="/en/privacy">{t('footer.links.privacy')}</a>
 							<span>•</span>
-							<a href="/terms">{t('footer.links.terms')}</a>
+							<a href="/en/terms">{t('footer.links.terms')}</a>
 						</div>
 						<p>{t('footer.copyright')}</p>
 					</div>
@@ -594,4 +594,4 @@ const t = useTranslations(lang);
 			});
 		</script>
 	</body>
-</html>
+</html> 
